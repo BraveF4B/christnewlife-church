@@ -1,0 +1,45 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Hero -->
+<div style="background: linear-gradient(135deg, #1a0050 0%, #6a0080 50%, #c0005a 100%); padding: 80px 0;">
+    <div class="container text-center text-white">
+        <p class="fw-bold mb-2" style="color: #FFD700; letter-spacing: 4px; font-size: 0.85rem;">✦ MEMORIES & MOMENTS ✦</p>
+        <h1 style="font-family: Cormorant Garamond, serif; font-size: 3rem; font-weight: 700;">Our Gallery</h1>
+        <p class="mt-3 opacity-75 fs-5" style="font-family: Crimson Text, serif; font-style: italic;">Capturing God's glory in every moment</p>
+    </div>
+</div>
+
+<!-- Gallery Grid -->
+<div class="py-5" style="background: #f9f0ff;">
+    <div class="container">
+        {% if images %}
+        <div class="row g-4">
+            {% for image in images %}
+            <div class="col-md-4 col-lg-3">
+                <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(74,0,128,0.15); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="position: relative; overflow: hidden; height: 250px;">
+                        <img src="{{ image.image.url }}" alt="{{ image.title }}" style="width:100%;height:100%;object-fit:cover; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(74,0,128,0.9)); padding: 20px 15px 15px;">
+                            <p class="mb-0 fw-bold" style="color: #FFD700; font-size: 0.9rem;">{{ image.title }}</p>
+                            {% if image.category %}
+                                <p class="mb-0" style="color: rgba(255,255,255,0.7); font-size: 0.75rem;">{{ image.category }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-center py-5">
+            <div style="font-size: 4rem;">📸</div>
+            <h4 class="mt-3" style="color: #4a0080;">No images yet</h4>
+            <p class="text-muted">Gallery images will appear here soon. Check back later!</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

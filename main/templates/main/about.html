@@ -1,0 +1,594 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}About Us - Christ New Life Solution & Healing Church Worldwide{% endblock %}
+
+{% block extra_css %}
+<style>
+  body { background-color: #ffffff !important; }
+
+  /* ── Hero ── */
+  .about-hero {
+    background: linear-gradient(160deg, #1a0030 0%, #4a0080 55%, #1a0030 100%);
+    padding: 100px 0 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 15% 50%, rgba(255,215,0,0.07) 0%, transparent 50%),
+      radial-gradient(circle at 85% 20%, rgba(255,215,0,0.05) 0%, transparent 40%);
+    pointer-events: none;
+  }
+  .about-hero .bc-nav {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem; letter-spacing: 2.5px;
+    text-transform: uppercase; color: rgba(255,215,0,0.8);
+    margin-bottom: 1.2rem;
+  }
+  .about-hero .bc-nav a { color: rgba(255,215,0,0.8); text-decoration: none; transition: color 0.2s; }
+  .about-hero .bc-nav a:hover { color: #FFD700; }
+  .about-hero .bc-nav span { margin: 0 7px; color: rgba(255,255,255,0.3); }
+  .about-hero .church-logo {
+    width: 110px; height: 110px;
+    object-fit: contain; border-radius: 50%;
+    border: 3px solid rgba(255,215,0,0.5);
+    margin-bottom: 1.6rem;
+    padding: 6px;
+    background: rgba(255,255,255,0.05);
+    box-shadow: 0 0 40px rgba(255,215,0,0.2);
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 30px rgba(255,215,0,0.2); }
+    50%       { box-shadow: 0 0 55px rgba(255,215,0,0.45); }
+  }
+  .about-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 5.5vw, 4rem);
+    font-weight: 700; color: #FFD700;
+    line-height: 1.15; margin-bottom: 1rem;
+  }
+  .about-hero .hero-sub {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.18rem; color: rgba(255,255,255,0.85);
+    max-width: 540px; margin: 0 auto; line-height: 1.8;
+  }
+
+  /* ── Shared ── */
+  .gold-bar-c { width:52px; height:3px; background:#FFD700; border-radius:2px; margin:1.3rem auto; }
+  .gold-bar-l { width:52px; height:3px; background:#FFD700; border-radius:2px; margin:1.1rem 0 1.6rem; }
+  .s-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem; letter-spacing: 3px;
+    text-transform: uppercase; font-weight: 700;
+    display: block; margin-bottom: 0.4rem;
+  }
+  .s-label-purple { color: #4a0080; }
+  .s-label-gold   { color: rgba(255,215,0,0.85); }
+  .s-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.9rem, 4vw, 2.9rem);
+    font-weight: 700; line-height: 1.2; margin: 0;
+  }
+  .s-title-dark { color: #1a0030; }
+  .s-title-gold { color: #FFD700; }
+
+  /* ── History ── */
+  .history-section { background: #ffffff; padding: 95px 0; }
+  .history-logo-box {
+    width: 100%; height: 420px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #1a0030 0%, #3a0065 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(74,0,128,0.25);
+  }
+  .history-logo-box::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at center, rgba(255,215,0,0.08) 0%, transparent 70%);
+  }
+  .history-logo-box img {
+    width: 320px; height: 320px;
+    object-fit: contain; position: relative; z-index: 1;
+    filter: drop-shadow(0 0 30px rgba(255,215,0,0.3));
+    transition: transform 0.5s ease, filter 0.5s ease;
+  }
+  .history-logo-box:hover img {
+    transform: scale(1.04);
+    filter: drop-shadow(0 0 45px rgba(255,215,0,0.5));
+  }
+  .year-badge {
+    position: absolute; bottom: -18px; right: -14px;
+    background: #4a0080; color: #FFD700;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; font-weight: 700;
+    padding: 14px 22px; text-align: center;
+    border-radius: 4px; line-height: 1.25;
+    box-shadow: 0 8px 26px rgba(74,0,128,0.4);
+    z-index: 2;
+  }
+  .year-badge small {
+    display: block; font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem; letter-spacing: 1.5px;
+    text-transform: uppercase; color: rgba(255,215,0,0.75); margin-top: 2px;
+  }
+  .history-body { padding-left: 48px; }
+  .history-body p {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.1rem; color: #2a1a3e; line-height: 1.9; margin-bottom: 1.1rem;
+  }
+  .history-body strong { color: #1a0030; }
+  .history-quote {
+    border-left: 3px solid #FFD700;
+    padding: 0.6rem 0 0.6rem 1.2rem; margin: 1.4rem 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem; font-style: italic;
+    color: #4a0080; line-height: 1.6;
+    background: rgba(74,0,128,0.04);
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* ── Stats strip ── */
+  .stats-strip {
+    background: linear-gradient(135deg, #4a0080 0%, #1a0030 100%);
+    padding: 55px 0;
+  }
+  .stat-item { text-align: center; }
+  .stat-item .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 700;
+    color: #FFD700; line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-item .stat-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem; letter-spacing: 2px;
+    text-transform: uppercase; color: rgba(255,255,255,0.7);
+  }
+  .stat-divider {
+    width: 1px; background: rgba(255,215,0,0.2);
+    height: 60px; margin: auto;
+  }
+
+  /* ── Vision & Mission ── */
+  .vm-section { background: #f5f0ff; padding: 95px 0; }
+  .vm-card {
+    background: #ffffff; border-radius: 6px;
+    padding: 44px 36px; height: 100%;
+    border-top: 4px solid #4a0080;
+    box-shadow: 0 6px 30px rgba(74,0,128,0.08);
+    transition: transform 0.32s ease, box-shadow 0.32s ease;
+    position: relative; overflow: hidden;
+  }
+  .vm-card::after {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 80px; height: 80px;
+    background: radial-gradient(circle at top right, rgba(74,0,128,0.06) 0%, transparent 70%);
+  }
+  .vm-card.mission-card { border-top-color: #FFD700; }
+  .vm-card:hover { transform: translateY(-7px); box-shadow: 0 20px 50px rgba(74,0,128,0.15); }
+  .vm-icon {
+    width: 54px; height: 54px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.3rem; font-size: 1.35rem;
+  }
+  .vm-icon.purple { background: rgba(74,0,128,0.1); color: #4a0080; }
+  .vm-icon.gold   { background: rgba(255,215,0,0.18); color: #8a6000; }
+  .vm-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.7rem; font-weight: 700; color: #1a0030; margin-bottom: 0.8rem;
+  }
+  .vm-card p {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.08rem; color: #2a1a3e; line-height: 1.85; margin: 0;
+  }
+
+  /* ── Core Values ── */
+  .values-section { background: #ffffff; padding: 95px 0; }
+  .value-card {
+    text-align: center; padding: 36px 22px 32px;
+    border: 1px solid rgba(74,0,128,0.13); border-radius: 6px;
+    height: 100%; background: #ffffff;
+    position: relative; overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  }
+  .value-card::after {
+    content: ''; position: absolute;
+    bottom: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, #4a0080, #FFD700);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+  .value-card:hover {
+    border-color: rgba(74,0,128,0.28);
+    transform: translateY(-5px);
+    box-shadow: 0 16px 40px rgba(74,0,128,0.1);
+  }
+  .value-card:hover::after { transform: scaleX(1); }
+  .value-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem; font-weight: 700;
+    color: rgba(74,0,128,0.1); line-height: 1; margin-bottom: 0.5rem;
+  }
+  .value-card h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.76rem; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: #4a0080; margin-bottom: 0.85rem;
+  }
+  .value-card p {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.03rem; color: #2a1a3e; line-height: 1.75; margin: 0;
+  }
+
+  /* ── Leadership ── */
+  .leadership-section {
+    background: linear-gradient(160deg, #1a0030 0%, #2e0055 50%, #1a0030 100%);
+    padding: 95px 0; position: relative; overflow: hidden;
+  }
+  .leadership-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 30% 60%, rgba(255,215,0,0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .leadership-sub {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.1rem; color: rgba(255,255,255,0.6); margin-top: 0.4rem;
+  }
+  .leader-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,215,0,0.18); border-radius: 6px;
+    overflow: hidden; transition: transform 0.32s ease, border-color 0.32s ease, box-shadow 0.32s ease;
+    max-width: 380px; margin: 0 auto;
+  }
+  .leader-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255,215,0,0.5);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  }
+  .leader-photo {
+    width: 100%; height: 340px;
+    object-fit: cover; object-position: top center; display: block;
+    transition: transform 0.5s ease;
+  }
+  .leader-card:hover .leader-photo { transform: scale(1.04); }
+  .leader-placeholder {
+    width: 100%; height: 340px;
+    background: rgba(255,255,255,0.04);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 10px;
+  }
+  .leader-placeholder .cross-icon { font-size: 3.5rem; color: rgba(255,215,0,0.2); }
+  .leader-placeholder .upload-hint {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.63rem; letter-spacing: 1.5px;
+    text-transform: uppercase; color: rgba(255,255,255,0.18);
+  }
+  .leader-info { padding: 26px 26px 30px; }
+  .leader-role {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.67rem; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(255,215,0,0.8); margin-bottom: 0.35rem;
+  }
+  .leader-info h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.45rem; font-weight: 700;
+    color: #FFD700; margin-bottom: 0.6rem; line-height: 1.25;
+  }
+  .leader-info p {
+    font-family: 'Crimson Text', serif;
+    font-size: 0.98rem; color: rgba(255,230,210,0.75); line-height: 1.75; margin: 0;
+  }
+
+  /* ── CTA ── */
+  .about-cta {
+    background: linear-gradient(135deg, #4a0080 0%, #2d0060 100%);
+    padding: 90px 0; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .about-cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(255,215,0,0.07) 0%, transparent 60%);
+  }
+  .about-cta h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.9rem, 4vw, 2.8rem);
+    font-weight: 700; color: #FFD700; margin-bottom: 1rem;
+    position: relative;
+  }
+  .about-cta p {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.12rem; color: rgba(255,255,255,0.82);
+    max-width: 480px; margin: 0 auto 2rem; line-height: 1.8;
+    position: relative;
+  }
+  .btn-about-gold {
+    display: inline-block; background: #FFD700; color: #1a0030 !important;
+    font-family: 'Montserrat', sans-serif; font-size: 0.76rem;
+    font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    padding: 14px 36px; border-radius: 2px;
+    text-decoration: none !important;
+    transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+    margin: 0 6px 10px; position: relative;
+  }
+  .btn-about-gold:hover {
+    background: #ffe033; transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255,215,0,0.3);
+  }
+  .btn-about-ghost {
+    display: inline-block; border: 2px solid #FFD700; color: #FFD700 !important;
+    font-family: 'Montserrat', sans-serif; font-size: 0.76rem;
+    font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    padding: 12px 34px; border-radius: 2px;
+    text-decoration: none !important;
+    transition: background 0.25s, color 0.25s, transform 0.25s;
+    margin: 0 6px 10px; position: relative;
+  }
+  .btn-about-ghost:hover {
+    background: #FFD700; color: #1a0030 !important; transform: translateY(-3px);
+  }
+
+  @media (max-width: 767px) {
+    .history-body { padding-left: 0; margin-top: 52px; }
+    .year-badge { right: 8px; bottom: -14px; }
+    .stat-divider { display: none; }
+  }
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<!-- ══ HERO ══════════════════════════════════════════ -->
+<section class="about-hero">
+  <div class="container position-relative" style="z-index:1;">
+    <img src="{% static 'main/images/logo.png' %}" alt="Church Logo" class="church-logo"
+         data-aos="zoom-in" data-aos-duration="800">
+    <p class="bc-nav" data-aos="fade-down" data-aos-delay="100">
+      <a href="{% url 'home' %}">Home</a>
+      <span>›</span>
+      About Us
+    </p>
+    <h1 data-aos="fade-up" data-aos-delay="200">Our Story, Our Faith,<br>Our Mission</h1>
+    <div class="gold-bar-c" data-aos="fade-up" data-aos-delay="300"></div>
+    <p class="hero-sub" data-aos="fade-up" data-aos-delay="400">
+      Rooted in the Word of God, driven by love, and devoted to seeing lives transformed through the power of Jesus Christ.
+    </p>
+  </div>
+</section>
+
+
+<!-- ══ CHURCH HISTORY ════════════════════════════════ -->
+<section class="history-section">
+  <div class="container">
+    <div class="row align-items-center">
+
+      <div class="col-lg-5 mb-5 mb-lg-0" data-aos="fade-right" data-aos-duration="900">
+        <div class="position-relative">
+          {% if church_photo %}
+            <img src="{{ church_photo.url }}" alt="Christ New Life Church"
+                 style="width:100%; height:420px; object-fit:cover; border-radius:6px; box-shadow:0 20px 60px rgba(74,0,128,0.2);">
+          {% else %}
+            <div class="history-logo-box">
+              <img src="{% static 'main/images/logo.png' %}" alt="Christ New Life Church Logo">
+            </div>
+          {% endif %}
+          <div class="year-badge" data-aos="zoom-in" data-aos-delay="400">
+            Est. SEP 7TH 2021
+            <small>Founded in Faith</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7" data-aos="fade-left" data-aos-duration="900" data-aos-delay="150">
+        <div class="history-body">
+          <span class="s-label s-label-purple">Our History</span>
+          <h2 class="s-title s-title-dark">A Church Born<br>Out of Purpose</h2>
+          <div class="gold-bar-l"></div>
+          <p>Christ's New Life Solution &amp; Healing Church Worldwide was founded with a singular divine mandate to bring healing, restoration and the transforming power of Jesus Christ to every soul that walks through its doors.</p>
+          <p>Under the inspired leadership of <strong>Prophet. Dairo Olayemi Jeremiah ( P.K.A BABA FAYEGBAMI )</strong>, the church began on Tuesday 7th of September 2021 as a small gathering of believers in Ikirun, Osun State, and has since grown into a vibrant, Spirit-filled community touching thousands of lives across the region and beyond.</p>
+          <blockquote class="history-quote">
+            "We are not just a church, we are a place where broken people find wholeness, and hopeless hearts discover the limitless grace of God."
+          </blockquote>
+          <p>Today, the church stands as a beacon of faith - a place where prayer is answered, prophecy flows and every believer is equipped to fulfil their God-given destiny.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ STATS STRIP ════════════════════════════════════ -->
+<section class="stats-strip">
+  <div class="container">
+    <div class="row g-4 align-items-center justify-content-center">
+      <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="0">
+        <div class="stat-item">
+          <div class="stat-num">2021</div>
+          <div class="stat-label">Year Founded</div>
+        </div>
+      </div>
+      <div class="col-md-1 d-none d-md-block">
+        <div class="stat-divider"></div>
+      </div>
+      <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100">
+        <div class="stat-item">
+          <div class="stat-num">7+</div>
+          <div class="stat-label">Services Weekly</div>
+        </div>
+      </div>
+      <div class="col-md-1 d-none d-md-block">
+        <div class="stat-divider"></div>
+      </div>
+      <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200">
+        <div class="stat-item">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Lives Transformed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ VISION & MISSION ══════════════════════════════ -->
+<section class="vm-section">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="s-label s-label-purple">Our Purpose</span>
+      <h2 class="s-title s-title-dark">Vision &amp; Mission</h2>
+      <div class="gold-bar-c"></div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6" data-aos="fade-right" data-aos-delay="100">
+        <div class="vm-card">
+          <div class="vm-icon purple"><i class="fas fa-eye"></i></div>
+          <h3>Our Vision</h3>
+          <p>To raise a generation of Spirit-filled believers who walk boldly in the fullness of God's power — manifesting signs, wonders and healing to establish Christ's New Life as a global house of prayer, restoration and divine solutions for all nations.</p>
+        </div>
+      </div>
+      <div class="col-md-6" data-aos="fade-left" data-aos-delay="100">
+        <div class="vm-card mission-card">
+          <div class="vm-icon gold"><i class="fas fa-crosshairs"></i></div>
+          <h3>Our Mission</h3>
+          <p>To preach the undiluted Gospel of Jesus Christ with signs and wonders following; to provide healing — spiritual, physical and emotional to the broken-hearted; to disciple believers into maturity and to reach every community with the transforming love of God.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ CORE VALUES ═══════════════════════════════════ -->
+<section class="values-section">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="s-label s-label-purple">What We Stand For</span>
+      <h2 class="s-title s-title-dark">Our Core Values</h2>
+      <div class="gold-bar-c"></div>
+      <p style="font-family:'Crimson Text',serif; font-size:1.08rem; color:#2a1a3e; max-width:500px; margin:0 auto; line-height:1.8;">
+        These principles are the foundation upon which everything we do is built.
+      </p>
+    </div>
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
+        <div class="value-card">
+          <div class="value-num">01</div>
+          <h4>Faith in God's Word</h4>
+          <p>We believe the Bible is the inspired, infallible Word of God and the ultimate authority for faith, life and practice.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="80">
+        <div class="value-card">
+          <div class="value-num">02</div>
+          <h4>Prayer &amp; Worship</h4>
+          <p>We are a house of prayer. Fervent, Spirit-led prayer and heartfelt worship are at the core of our corporate and personal life.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="160">
+        <div class="value-card">
+          <div class="value-num">03</div>
+          <h4>Healing &amp; Deliverance</h4>
+          <p>We believe in the miraculous healing power of Jesus Christ and minister healing and deliverance to all who come in faith.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
+        <div class="value-card">
+          <div class="value-num">04</div>
+          <h4>Discipleship</h4>
+          <p>We are committed to growing believers to spiritual maturity through Bible teaching, mentoring and accountability.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="80">
+        <div class="value-card">
+          <div class="value-num">05</div>
+          <h4>Community &amp; Love</h4>
+          <p>We love one another and our community. We serve with compassion and create a family where every person is valued and belongs.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4" data-aos="fade-up" data-aos-delay="160">
+        <div class="value-card">
+          <div class="value-num">06</div>
+          <h4>Evangelism &amp; Missions</h4>
+          <p>We are passionate about souls. We actively reach the lost — locally and globally with the saving message of Jesus Christ.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ LEADERSHIP ════════════════════════════════════ -->
+<section class="leadership-section">
+  <div class="container position-relative" style="z-index:1;">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="s-label s-label-gold">Who We Are</span>
+      <h2 class="s-title s-title-gold">Meet Our Leadership</h2>
+      <div class="gold-bar-c"></div>
+      <p class="leadership-sub">Faithfully leading this church with wisdom, love and the fire of God.</p>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+
+      <div class="col-md-6 col-lg-4" data-aos="fade-right" data-aos-delay="100">
+        <div class="leader-card">
+          {% if pastor and pastor.image %}
+            <img src="{{ pastor.image.url }}" alt="{{ pastor.name }}" class="leader-photo">
+          {% else %}
+            <div class="leader-placeholder">
+              <span class="cross-icon">✝</span>
+              <span class="upload-hint">Upload via Admin</span>
+            </div>
+          {% endif %}
+          <div class="leader-info">
+            <p class="leader-role">PROPHET</p>
+            <h4>{% if pastor %}{{ pastor.name }}{% else %}Prophet Dairo Olayemi Jeremiah{% endif %}</h4>
+            <p>{% if pastor and pastor.message %}{{ pastor.message }}{% else %}A man of God called with a prophetic mandate, faithfully leading this church with fire, vision and unwavering devotion to God's Word since its founding.{% endif %}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4" data-aos="fade-left" data-aos-delay="100">
+        <div class="leader-card">
+          {% if pastor_wife and pastor_wife.image %}
+            <img src="{{ pastor_wife.image.url }}" alt="{{ pastor_wife.name }}" class="leader-photo">
+          {% else %}
+            <div class="leader-placeholder">
+              <span class="cross-icon">✝</span>
+              <span class="upload-hint">Upload via Admin</span>
+            </div>
+          {% endif %}
+          <div class="leader-info">
+            <p class="leader-role">{% if pastor_wife %}{{ pastor_wife.title }}{% else %}MUMMY G.O{% endif %}</p>
+            <h4>{% if pastor_wife %}{{ pastor_wife.name }}{% else %} Pastor Mrs. DAIRO OMOWUMI CHRISTIANAH{% endif %}</h4>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ CTA ═══════════════════════════════════════════ -->
+<section class="about-cta">
+  <div class="container position-relative" style="z-index:1;">
+    <h2 data-aos="fade-up">Come Worship With Us</h2>
+    <p data-aos="fade-up" data-aos-delay="100">
+      Whether you're searching for healing, community or simply a place to encounter God — you are always welcome here.
+    </p>
+    <div data-aos="fade-up" data-aos-delay="200">
+    </div>
+  </div>
+</section>
+
+{% endblock %}

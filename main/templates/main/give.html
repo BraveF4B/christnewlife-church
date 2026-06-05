@@ -1,0 +1,103 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Hero -->
+<div style="background: linear-gradient(135deg, #1a0050 0%, #6a0080 50%, #c0005a 100%); padding: 80px 0;">
+    <div class="container text-center text-white">
+        <p class="fw-bold mb-2" style="color: #FFD700; letter-spacing: 4px; font-size: 0.85rem;">✦ SUPPORT THE MINISTRY ✦</p>
+        <h1 style="font-family: Cormorant Garamond, serif; font-size: 3rem; font-weight: 700;">Give / Donate</h1>
+        <p class="mt-3 opacity-75 fs-5" style="font-family: Crimson Text, serif; font-style: italic;">"Give, and it will be given to you." — Luke 6:38</p>
+    </div>
+</div>
+
+<!-- Why Give -->
+<div class="py-5 bg-white">
+    <div class="container">
+        <p class="text-center fw-bold mb-2" style="color: #4a0080; letter-spacing: 4px; font-size: 0.85rem;">✦ WHY GIVE ✦</p>
+        <h2 class="section-title">Support God's Work</h2>
+        <div class="section-divider"></div>
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-4" data-aos="fade-up">
+                <div class="text-center p-4" style="border-top: 4px solid #FFD700; border-radius: 12px; box-shadow: 0 4px 20px rgba(74,0,128,0.1);">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🏛️</div>
+                    <h5 class="fw-bold" style="color:#4a0080; font-family: Cormorant Garamond, serif; font-size: 1.3rem;">Church Building</h5>
+                    <p class="text-muted small">Support the construction and maintenance of God's house where souls are saved and healed.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-center p-4" style="border-top: 4px solid #FFD700; border-radius: 12px; box-shadow: 0 4px 20px rgba(74,0,128,0.1);">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🌍</div>
+                    <h5 class="fw-bold" style="color:#4a0080; font-family: Cormorant Garamond, serif; font-size: 1.3rem;">Evangelism</h5>
+                    <p class="text-muted small">Help us spread the gospel of Jesus Christ to every nation, tribe and tongue across Nigeria and beyond.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="text-center p-4" style="border-top: 4px solid #FFD700; border-radius: 12px; box-shadow: 0 4px 20px rgba(74,0,128,0.1);">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🤝</div>
+                    <h5 class="fw-bold" style="color:#4a0080; font-family: Cormorant Garamond, serif; font-size: 1.3rem;">Welfare & Outreach</h5>
+                    <p class="text-muted small">Support our community outreach programs helping the less privileged, widows and orphans in our community.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bank Details -->
+<div class="py-5" style="background: linear-gradient(135deg, #1a0030 0%, #4a0080 100%);">
+    <div class="container">
+        <p class="text-center fw-bold mb-2" style="color: #FFD700; letter-spacing: 4px; font-size: 0.85rem;">✦ GIVING DETAILS ✦</p>
+        <h2 class="section-title" style="color: #ffffff;">Bank Account Details</h2>
+        <div class="section-divider"></div>
+        <div class="row g-4 justify-content-center">
+
+            <!-- Account 1 -->
+            <div class="col-md-5" data-aos="fade-right">
+                <div class="p-4" style="background: rgba(255,255,255,0.05); border: 2px solid #FFD700; border-radius: 16px; backdrop-filter: blur(10px);">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div style="width:50px;height:50px;background:#FFD700;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;">🏦</div>
+                        <h5 class="mb-0 fw-bold" style="color:#FFD700; font-family: Cormorant Garamond, serif; font-size: 1.3rem;">First Bank Of Nigeria</h5>
+                    </div>
+                    <div class="mb-2">
+                        <p class="mb-1 small" style="color: rgba(255,255,255,0.6); letter-spacing: 1px;">ACCOUNT NAME</p>
+                        <p class="fw-bold" style="color: #ffffff;">DAIRO OLAYEMI JEREMIAH</p>
+                    </div>
+                    <div class="mb-2">
+                        <p class="mb-1 small" style="color: rgba(255,255,255,0.6); letter-spacing: 1px;">ACCOUNT NUMBER</p>
+                        <p class="fw-bold fs-4" style="color: #FFD700; letter-spacing: 3px;">3066195192</p>
+                    </div>
+                    <button onclick="navigator.clipboard.writeText('3066195192')" class="btn btn-gold btn-sm mt-2 w-100">
+                        📋 Copy Account Number
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Note -->
+        <div class="mt-5 text-center" data-aos="fade-up">
+            <div class="d-inline-block p-4" style="background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.3); border-radius: 12px; max-width: 600px;">
+                <p class="mb-0" style="color: rgba(255,255,255,0.8); font-family: Crimson Text, serif; font-style: italic; font-size: 1.1rem;">
+                    "After making your donation, please send your name, amount and purpose to our WhatsApp: 
+                    <a href="https://wa.me/2348166577950" style="color: #FFD700; font-weight: bold;">+234 816 657 7950</a> 
+                    so we can acknowledge your giving. God bless you!"
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripture -->
+<div class="py-5 text-center" style="background: #f9f0ff;">
+    <div class="container">
+        <div data-aos="zoom-in">
+            <p style="font-size: 3rem;">✝️</p>
+            <p class="fw-bold fs-4 fst-italic" style="color: #4a0080; font-family: Crimson Text, serif; max-width: 700px; margin: 0 auto;">
+                "Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver."
+            </p>
+            <p class="mt-3 fw-bold" style="color: #FFD700; letter-spacing: 2px;">— 2 CORINTHIANS 9:7</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

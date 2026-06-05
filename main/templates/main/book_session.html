@@ -1,0 +1,382 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Book A Session - Christ New Life Solution & Healing Church Worldwide{% endblock %}
+
+{% block extra_css %}
+<style>
+  body { background-color: #f9f6ff !important; }
+
+  /* ── Hero ── */
+  .booking-hero {
+    background: linear-gradient(160deg, #1a0030 0%, #4a0080 55%, #1a0030 100%);
+    padding: 95px 0 75px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .booking-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(255,215,0,0.07) 0%, transparent 50%),
+      radial-gradient(circle at 80% 30%, rgba(255,215,0,0.05) 0%, transparent 40%);
+    pointer-events: none;
+  }
+  .booking-hero .bc-nav {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.73rem; letter-spacing: 2.5px;
+    text-transform: uppercase; color: rgba(255,215,0,0.8);
+    margin-bottom: 1.1rem;
+  }
+  .booking-hero .bc-nav a { color: rgba(255,215,0,0.8); text-decoration: none; }
+  .booking-hero .bc-nav a:hover { color: #FFD700; }
+  .booking-hero .bc-nav span { margin: 0 8px; color: rgba(255,255,255,0.3); }
+  .booking-hero .hero-tag {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.73rem; letter-spacing: 3px;
+    text-transform: uppercase; color: #FFD700;
+    font-weight: 700; margin-bottom: 1rem;
+  }
+  .booking-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 700; color: #ffffff;
+    line-height: 1.2; margin-bottom: 0.5rem;
+  }
+  .booking-hero h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    font-weight: 700; color: #FFD700;
+    margin-bottom: 1rem;
+  }
+  .booking-hero p {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.15rem; color: rgba(255,255,255,0.8);
+    max-width: 500px; margin: 0 auto; line-height: 1.75;
+  }
+  .gold-bar-c { width:52px; height:3px; background:#FFD700; border-radius:2px; margin:1.2rem auto; }
+
+  /* ── Success Alert ── */
+  .success-card {
+    background: linear-gradient(135deg, #f0fff4, #e6ffee);
+    border: none; border-left: 5px solid #28a745;
+    border-radius: 6px; padding: 28px 32px;
+    margin-bottom: 2rem;
+    box-shadow: 0 6px 24px rgba(40,167,69,0.12);
+  }
+  .success-card h5 { color: #1a6b2e; font-family: 'Montserrat', sans-serif; font-weight: 700; margin-bottom: 0.5rem; }
+  .success-card p  { color: #2d7a3e; font-family: 'Crimson Text', serif; font-size: 1.08rem; margin: 0; }
+
+  /* ── Pastor Card ── */
+  .pastor-card {
+    background: #ffffff;
+    border-radius: 6px; border-top: 4px solid #FFD700;
+    padding: 36px 28px; text-align: center;
+    box-shadow: 0 6px 30px rgba(74,0,128,0.1);
+    margin-bottom: 1.8rem;
+    position: relative; overflow: hidden;
+  }
+  .pastor-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(255,215,0,0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .pastor-avatar {
+    width: 100px; height: 100px; border-radius: 50%;
+    border: 4px solid #FFD700;
+    object-fit: cover; object-position: top;
+    margin: 0 auto 1.1rem;
+    display: block;
+    box-shadow: 0 0 30px rgba(255,215,0,0.25);
+  }
+  .pastor-avatar-placeholder {
+    width: 100px; height: 100px; border-radius: 50%;
+    background: linear-gradient(135deg, #4a0080, #FFD700);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem; margin: 0 auto 1.1rem;
+    border: 4px solid rgba(255,215,0,0.4);
+  }
+  .pastor-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.45rem; font-weight: 700;
+    color: #4a0080; margin-bottom: 0.3rem;
+  }
+  .pastor-card p {
+    font-family: 'Crimson Text', serif;
+    font-size: 1rem; color: #777; margin: 0;
+  }
+
+  /* ── Form Card ── */
+  .form-card {
+    background: #ffffff;
+    border-radius: 6px; border-top: 4px solid #4a0080;
+    padding: 44px 40px;
+    box-shadow: 0 6px 30px rgba(74,0,128,0.1);
+    margin-bottom: 1.8rem;
+  }
+  .form-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 700;
+    color: #1a0030; margin-bottom: 1.6rem;
+  }
+  .form-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: #3a0060; margin-bottom: 0.45rem;
+  }
+  .form-control, .form-select {
+    border: 1.5px solid rgba(74,0,128,0.2);
+    border-radius: 4px; padding: 12px 14px;
+    font-family: 'Crimson Text', serif;
+    font-size: 1.02rem; color: #333;
+    transition: border-color 0.25s, box-shadow 0.25s;
+    background: #fdfaff;
+  }
+  .form-control:focus, .form-select:focus {
+    border-color: #4a0080;
+    box-shadow: 0 0 0 3px rgba(74,0,128,0.1);
+    outline: none; background: #fff;
+  }
+  .form-control::placeholder { color: #bba8cc; }
+  textarea.form-control { resize: vertical; min-height: 130px; }
+
+  /* ── Field icon wrappers ── */
+  .input-group-icon { position: relative; }
+  .input-group-icon .field-icon {
+    position: absolute; left: 14px; top: 50%;
+    transform: translateY(-50%);
+    color: #9060b8; font-size: 0.9rem; pointer-events: none;
+  }
+  .input-group-icon .form-control,
+  .input-group-icon .form-select { padding-left: 38px; }
+
+  /* ── Submit button ── */
+  .btn-submit {
+    width: 100%; background: linear-gradient(135deg, #4a0080 0%, #6a00b0 100%);
+    color: #FFD700 !important; border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.82rem; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 16px; border-radius: 4px;
+    transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+    cursor: pointer; margin-top: 0.5rem;
+  }
+  .btn-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(74,0,128,0.35);
+    background: linear-gradient(135deg, #5a0098 0%, #7a00c8 100%);
+  }
+  .btn-submit i { margin-right: 8px; }
+
+  /* ── Note card ── */
+  .note-card {
+    background: #fff8ff;
+    border-radius: 6px; border-left: 4px solid #4a0080;
+    padding: 26px 28px;
+    box-shadow: 0 4px 18px rgba(74,0,128,0.07);
+  }
+  .note-card h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: #4a0080; margin-bottom: 0.9rem;
+  }
+  .note-card ul { margin: 0; padding-left: 1.2rem; }
+  .note-card ul li {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.02rem; color: #555;
+    margin-bottom: 0.4rem; line-height: 1.6;
+  }
+
+  /* ── Section divider label ── */
+  .field-section {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.68rem; letter-spacing: 2.5px;
+    text-transform: uppercase; color: #9060b8;
+    font-weight: 700; padding-bottom: 8px;
+    border-bottom: 1px solid rgba(74,0,128,0.1);
+    margin-bottom: 1.2rem; margin-top: 0.5rem;
+  }
+
+  @media (max-width: 767px) {
+    .form-card { padding: 28px 20px; }
+  }
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<!-- ══ HERO ════════════════════════════════════════ -->
+<section class="booking-hero">
+  <div class="container position-relative" style="z-index:1;">
+    <p class="bc-nav" data-aos="fade-down" data-aos-duration="600">
+      <a href="{% url 'home' %}">Home</a>
+      <span>›</span>
+      Book a Session
+    </p>
+    <p class="hero-tag" data-aos="fade-up" data-aos-delay="100">✦ Schedule A Meeting ✦</p>
+    <h1 data-aos="fade-up" data-aos-delay="200">Book A Session With</h1>
+    <h2 data-aos="fade-up" data-aos-delay="300">Prophet. Dairo Olayemi Jeremiah</h2>
+    <div class="gold-bar-c" data-aos="fade-up" data-aos-delay="350"></div>
+    <p data-aos="fade-up" data-aos-delay="400">
+      Schedule a personal session for prayer, counseling, deliverance and more.
+    </p>
+  </div>
+</section>
+
+
+<!-- ══ FORM AREA ══════════════════════════════════ -->
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+
+      <!-- Success Message -->
+      {% if success %}
+      <div class="success-card" data-aos="zoom-in">
+        <h5>✅ Booking Submitted Successfully!</h5>
+        <p>Thank you for booking a session with Prophet. Dairo Olayemi Jeremiah. We will contact you shortly to confirm your appointment. God bless you!</p>
+      </div>
+      {% endif %}
+
+      <!-- Pastor Info Card -->
+      <div class="pastor-card" data-aos="fade-up" data-aos-delay="100">
+        {% if pastor and pastor.image %}
+          <img src="{{ pastor.image.url }}" alt="{{ pastor.name }}" class="pastor-avatar">
+        {% else %}
+          <div class="pastor-avatar-placeholder">✝</div>
+        {% endif %}
+        <h4>Prophet. Dairo Olayemi Jeremiah</h4>
+        <p>Founder — Christ's New Life Solution &amp; Healing Church Worldwide</p>
+      </div>
+
+      <!-- Booking Form -->
+      <div class="form-card" data-aos="fade-up" data-aos-delay="150">
+        <h4>Fill in Your Details</h4>
+
+        <form method="POST">
+          {% csrf_token %}
+          <div class="row g-3">
+
+            <!-- Personal Info -->
+            <div class="col-12">
+              <div class="field-section">Personal Information</div>
+            </div>
+
+            <div class="col-md-6" data-aos="fade-right" data-aos-delay="200">
+              <label class="form-label">Full Name *</label>
+              <div class="input-group-icon">
+                <i class="fas fa-user field-icon"></i>
+                <input type="text" name="full_name" class="form-control"
+                       placeholder="Enter your full name" required>
+              </div>
+            </div>
+
+            <div class="col-md-6" data-aos="fade-left" data-aos-delay="200">
+              <label class="form-label">Phone Number *</label>
+              <div class="input-group-icon">
+                <i class="fas fa-phone field-icon"></i>
+                <input type="text" name="phone" class="form-control"
+                       placeholder="Enter your phone number" required>
+              </div>
+            </div>
+
+            <div class="col-md-12" data-aos="fade-up" data-aos-delay="220">
+              <label class="form-label">Email Address</label>
+              <div class="input-group-icon">
+                <i class="fas fa-envelope field-icon"></i>
+                <input type="email" name="email" class="form-control"
+                       placeholder="Enter your email address">
+              </div>
+            </div>
+
+            <!-- Session Details -->
+            <div class="col-12 mt-2">
+              <div class="field-section">Session Details</div>
+            </div>
+
+            <div class="col-md-12" data-aos="fade-up" data-aos-delay="240">
+              <label class="form-label">Type of Consultation *</label>
+              <div class="input-group-icon">
+                <i class="fas fa-hands-praying field-icon"></i>
+                <select name="consultation_type" class="form-select" required>
+                  <option value="">— Select Type —</option>
+                  <option value="prayer">🙏 Prayer Session</option>
+                  <option value="counseling">💬 Counseling</option>
+                  <option value="deliverance">⚔️ Deliverance</option>
+                  <option value="marriage">💍 Marriage Counseling</option>
+                  <option value="business">💼 Business &amp; Financial Breakthrough</option>
+                  <option value="healing">🕊️ Healing &amp; Health</option>
+                  <option value="other">✦ Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-6" data-aos="fade-right" data-aos-delay="260">
+              <label class="form-label">Preferred Date *</label>
+              <div class="input-group-icon">
+                <i class="fas fa-calendar field-icon"></i>
+                <input type="date" name="preferred_date" class="form-control" required>
+              </div>
+            </div>
+
+            <div class="col-md-6" data-aos="fade-left" data-aos-delay="260">
+              <label class="form-label">Preferred Time *</label>
+              <div class="input-group-icon">
+                <i class="fas fa-clock field-icon"></i>
+                <select name="preferred_time" class="form-select" required>
+                  <option value="">— Select Time —</option>
+                  <option value="08:00">8:00 AM</option>
+                  <option value="09:00">9:00 AM</option>
+                  <option value="10:00">10:00 AM</option>
+                  <option value="11:00">11:00 AM</option>
+                  <option value="12:00">12:00 PM</option>
+                  <option value="13:00">1:00 PM</option>
+                  <option value="14:00">2:00 PM</option>
+                  <option value="15:00">3:00 PM</option>
+                  <option value="16:00">4:00 PM</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div class="col-12 mt-2">
+              <div class="field-section">Your Request</div>
+            </div>
+
+            <div class="col-12" data-aos="fade-up" data-aos-delay="280">
+              <label class="form-label">Brief Description of Your Need</label>
+              <textarea name="description" class="form-control"
+                        placeholder="Briefly describe what you would like to discuss or pray about..."></textarea>
+            </div>
+
+            <!-- Submit -->
+            <div class="col-12 mt-2" data-aos="zoom-in" data-aos-delay="320">
+              <button type="submit" class="btn-submit">
+                <i class="fas fa-paper-plane"></i> Submit Booking Request
+              </button>
+            </div>
+
+          </div>
+        </form>
+      </div>
+
+      <!-- Note -->
+      <div class="note-card" data-aos="fade-up" data-aos-delay="200">
+        <h6>📌 Please Note</h6>
+        <ul>
+          <li>All bookings are subject to the Prophet's availability.</li>
+          <li>You will be contacted within 24 hours to confirm your appointment.</li>
+          <li>Sessions are held at Christ's New Life, Fayegbami Street, Surulere Area, Ikirun, Osun State.</li>
+          <li>Please arrive 10 minutes before your scheduled time.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

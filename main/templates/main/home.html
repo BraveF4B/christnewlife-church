@@ -1,0 +1,191 @@
+{% extends 'main/base.html' %}
+{% block content %}
+
+<!-- Hero Section -->
+<div style="background: linear-gradient(135deg, #1a0050 0%, #6a0080 50%, #c0005a 100%); min-height: 90vh; display:flex; align-items:center;">
+    <div class="container py-5" data-aos="fade-right" data-aos-delay="100">
+        <div class="row align-items-center">
+            <div class="col-lg-7 text-white mb-5 mb-lg-0">
+                <p class="text-warning fw-bold mb-2" style="letter-spacing: 3px; font-size: 0.9rem;">WELCOME TO</p>
+                <h1 style="font-family: Playfair Display, serif; font-size: 3rem; font-weight: 700; line-height: 1.3;">
+                    CHRIST's NEW LIFE SOLUTION<br>& HEALING CHURCH WORLDWIDE
+                </h1>
+<p class="mt-3 fs-5" style="color: rgba(255,255,255,0.8); font-family: Crimson Text, serif; font-style: italic;">A place of divine solutions, healing and transformation.</p>
+                </p>
+            </div>
+            <div class="col-lg-5 text-center">
+                {% if pastor and pastor.image %}
+                    <img src="{{ pastor.image.url }}" alt="{{ pastor.name }}" class="rounded-circle img-fluid" style="width:420px;height:420px;object-fit:cover;border:5px solid #FFD700;box-shadow:0 0 50px rgba(255,215,0,0.4);"
+                  <div class="mt-3 p-3" style="background: rgba(255,215,0,0.15); border: 2px solid #FFD700; border-radius: 10px;">
+    <h4 style="font-family: Montserrat, sans-serif; font-size: 1.1rem; font-weight: 900; color: #FFD700; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">Prophet. Dairo Olayemi Jeremiah</h4>
+    <p style="color: #ffffff; font-family: Montserrat, sans-serif; font-size: 0.85rem; letter-spacing: 2px; font-weight: 600; margin-bottom: 0;">✦ FOUNDER ✦</p>
+</div>
+                {% else %}
+                    <div class="rounded-circle d-inline-flex align-items-center justify-content-center text-white" style="width:350px;height:350px;background:linear-gradient(135deg,#4a0080,#FFD700);font-size:8rem;">
+                        ✝️
+                    </div>
+                    <h4 class="text-white mt-3 fw-bold" style="font-family: Playfair Display, serif;">Prophet. Dairo Olayemi Jeremiah</h4>
+                    <p class="text-warning">Senior Pastor & Founder</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Service Times -->
+<div class="py-5" style="background: linear-gradient(rgba(26,0,48,0.85), rgba(74,0,128,0.85)), url('https://images.unsplash.com/photo-1438032005730-c779502df39b?w=1920&q=80') center/cover no-repeat; color: white;">
+    <div class="container">
+        <h2 class="section-title" style="color: #FFD700;">Service Times</h2>
+        <div class="section-divider"></div>
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-3" data-aos="fade-up">
+                <div class="card text-center p-4" style="border-top: 4px solid #FFD700; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,215,0,0.3); color: white;">
+                    <div class="fs-1 mb-2">🎓</div>
+                    <h5 class="fw-bold" style="color:#FFD700;">Sunday School</h5>
+                    <p style="color: rgba(255,255,255,0.8); margin-bottom:0;">9:00 AM - 10:45 AM</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="card text-center p-4" style="border-top: 4px solid #FFD700; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,215,0,0.3); color: white;">
+                    <div class="fs-1 mb-2">🎓</div>
+                    <h5 class="fw-bold" style="color:#FFD700;">Sunday Service</h5>
+                    <p style="color: rgba(255,255,255,0.8); margin-bottom:0;">10:45 AM - 2 PM</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="card text-center p-4" style="border-top: 4px solid #FFD700; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,215,0,0.3); color: white;">
+                    <div class="fs-1 mb-2">🎓</div>
+                    <h5 class="fw-bold" style="color:#FFD700;">Monday</h5>
+                    <p style="color: rgba(255,255,255,0.8); margin-bottom:0;">Counselling & Prayer 10:00 AM - 5 PM</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="card text-center p-4" style="border-top: 4px solid #FFD700; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,215,0,0.3); color: white;">
+                    <div class="fs-1 mb-2">🎓</div>
+                    <h5 class="fw-bold" style="color:#FFD700;">Tuesday</h5>
+                    <p style="color: rgba(255,255,255,0.8); margin-bottom:0;">Fayegbami Prophetic Service 10:00 AM - 3 PM</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="card text-center p-4" style="border-top: 4px solid #FFD700; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,215,0,0.3); color: white;">
+                    <div class="fs-1 mb-2">🎓</div>
+                    <h5 class="fw-bold" style="color:#FFD700;">Wednesday</h5>
+                    <p style="color: rgba(255,255,255,0.8); margin-bottom:0;">Hour Of Mercy 10 AM - 3 PM</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="card text-center p-4" style="border-top: 4px solid #FFD700; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,215,0,0.3); color: white;">
+                    <div class="fs-1 mb-2">🎓</div>
+                    <h5 class="fw-bold" style="color:#FFD700;">Friday</h5>
+                    <p style="color: rgba(255,255,255,0.8); margin-bottom:0;">Night Vigil 10 PM - 5 AM</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="card text-center p-4" style="border-top: 4px solid #FFD700; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,215,0,0.3); color: white;">
+                    <div class="fs-1 mb-2">🎓</div>
+                    <h5 class="fw-bold" style="color:#FFD700;">Saturday</h5>
+                    <p style="color: rgba(255,255,255,0.8); margin-bottom:0;">Bible Study 5 PM - 6 PM</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Pastor's Welcome Message -->
+<div class="py-5" style="background: linear-gradient(135deg, #000000 0%, #4a0080 40%, #800040 100%);">
+    <div class="container">
+        <h2 class="section-title" style="color: #FFD700;">A Word From Our Prophet / Ọ̀rọ̀ Láti Ọ̀dọ̀ Wòlíì Wa</h2>
+        <div class="section-divider"></div>
+        <div class="row align-items-center g-5">
+            <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="100">
+                {% if pastor and pastor.image %}
+                    <div style="position: relative; display: inline-block;">
+                        <div style="width: 280px; height: 280px; border-radius: 50%; border: 6px solid #FFD700; overflow: hidden; margin: 0 auto; box-shadow: 0 0 40px rgba(255,215,0,0.4);">
+                            <img src="{{ pastor.image.url }}" alt="{{ pastor.name }}" style="width:100%;height:100%;object-fit:cover;">
+                        </div>
+                        <div style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); background: #FFD700; color: #1a0030; padding: 5px 20px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; white-space: nowrap; letter-spacing: 1px;">
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="rounded-circle d-inline-flex align-items-center justify-content-center text-white" style="width:280px;height:280px;background:linear-gradient(135deg,#4a0080,#FFD700);font-size:6rem;">
+                        ✝️
+                    </div>
+                {% endif %}
+                <h4 class="mt-4 fw-bold" style="color: #FFD700; font-family: Cormorant Garamond, serif; font-size: 1.3rem;">PROPHET. DAIRO OLAYEMI JEREMIAH</h4>
+                <p style="color: rgba(255,255,255,0.7); font-size: 0.85rem; letter-spacing: 2px;">FOUNDER</p>
+            </div>
+            <div class="col-md-8" data-aos="fade-up" data-aos-delay="100">
+                <div style="border-left: 4px solid #FFD700; padding-left: 2rem;">
+                    <p style="font-family: Crimson Text, serif; font-size: 1.3rem; line-height: 2; color: rgba(255,255,255,0.9); font-style: italic;">
+                        Welcome to Christ's New Life Solution & Healing Church Worldwide. This is a place where God's power is real, miracles happen and lives are transformed. We believe that God has a solution to every problem and healing for every sickness. Come as you are and experience the love of God.</p>
+
+                    <p style="font-family: Crimson Text, serif; font-size: 1.3rem; line-height: 2; color: rgba(255,255,255,0.9); font-style: italic;">
+                        Ẹ káàbọ̀ sí Christ's New Life Solution & Healing Church Worldwide.
+
+Eyi ni ibi tí agbára Ọlọ́run ti ń ṣiṣẹ́ ní tòótọ́, ibi tí àwọn iṣẹ́ ìyanu ti ń ṣẹlẹ̀, tí a sì ti ń yí ìgbésí ayé àwọn ènìyàn padà fún rere. A gbàgbọ́ pé Ọlọ́run ní ojútùú fún gbogbo ìṣòro, àti ìwòsàn fún gbogbo àìsàn. Wá bí o ṣe rí, kí o sì ní ìrírí ìfẹ́ Ọlọ́run nínú ayé rẹ.
+                    </p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        
+
+<!-- What We Believe -->
+<div class="py-5" style="background: linear-gradient(rgba(26,0,48,0.92), rgba(74,0,128,0.92)), url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&q=80') center/cover no-repeat fixed;">
+    <div class="container">
+        <p class="text-center fw-bold mb-2" style="color: #FFD700; letter-spacing: 4px; font-size: 0.85rem; font-family: Montserrat, sans-serif;">✦ OUR FOUNDATION ✦</p>
+        <h2 class="section-title" style="color: #ffffff;">What We Believe</h2>
+        <div class="section-divider"></div>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-center p-4 h-100" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,215,0,0.3); border-radius: 16px; transition: all 0.3s; backdrop-filter: blur(10px);">
+                    <div class="mb-3" style="font-size: 3rem;">✝️</div>
+                    <h5 class="fw-bold mb-3" style="color:#FFD700; font-family: Cormorant Garamond, serif; font-size: 1.3rem;">Salvation</h5>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; line-height: 1.8;">We believe in the saving grace of Jesus Christ and that everyone can be saved through faith in Him.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-center p-4 h-100" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,215,0,0.3); border-radius: 16px; transition: all 0.3s; backdrop-filter: blur(10px);">
+                    <div class="mb-3" style="font-size: 3rem;">🕊️</div>
+                    <h5 class="fw-bold mb-3" style="color:#FFD700; font-family: Cormorant Garamond, serif; font-size: 1.3rem;">Holy Spirit</h5>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; line-height: 1.8;">We believe in the power of the Holy Spirit and His gifts as available for believers today.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-center p-4 h-100" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,215,0,0.3); border-radius: 16px; transition: all 0.3s; backdrop-filter: blur(10px);">
+                    <div class="mb-3" style="font-size: 3rem;">🙌</div>
+                    <h5 class="fw-bold mb-3" style="color:#FFD700; font-family: Cormorant Garamond, serif; font-size: 1.3rem;">Divine Healing</h5>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; line-height: 1.8;">We believe that God heals today just as He did in the Bible. Healing is available for all who believe.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-center p-4 h-100" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,215,0,0.3); border-radius: 16px; transition: all 0.3s; backdrop-filter: blur(10px);">
+                    <div class="mb-3" style="font-size: 3rem;">📖</div>
+                    <h5 class="fw-bold mb-3" style="color:#FFD700; font-family: Cormorant Garamond, serif; font-size: 1.3rem;">The Bible</h5>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; line-height: 1.8;">We believe the Bible is the inspired Word of God and the ultimate authority for Christian living.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-center p-4 h-100" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,215,0,0.3); border-radius: 16px; transition: all 0.3s; backdrop-filter: blur(10px);">
+                    <div class="mb-3" style="font-size: 3rem;">🙏</div>
+                    <h5 class="fw-bold mb-3" style="color:#FFD700; font-family: Cormorant Garamond, serif; font-size: 1.3rem;">Prayer</h5>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; line-height: 1.8;">We believe in the power of prayer and that God answers the prayers of His people.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-center p-4 h-100" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,215,0,0.3); border-radius: 16px; transition: all 0.3s; backdrop-filter: blur(10px);">
+                    <div class="mb-3" style="font-size: 3rem;">🌍</div>
+                    <h5 class="fw-bold mb-3" style="color:#FFD700; font-family: Cormorant Garamond, serif; font-size: 1.3rem;">Evangelism</h5>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; line-height: 1.8;">We are committed to spreading the gospel of Jesus Christ to every nation, tribe and tongue.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Call to Action -->
+<div class="py-5 text-white text-center" style="background: linear-gradient(135deg, #4a0080 0%, #1a0030 100%);">
+</div>
+
+{% endblock %}
