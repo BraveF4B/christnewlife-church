@@ -46,19 +46,23 @@ def book_session(request):
             description=description,
         )
 
-        # --- Email to the person who booked ---
-        if email:
-            subject_user = 'Booking Confirmation – Christ\'s New Life Solution & Healing Church'
-            message_user = f"""
+        # Send emails in background thread to avoid worker timeout
+        import threading
+
+        def send_emails():
+            # Email to the person who booked
+            if email:
+                subject_user = "Booking Confirmation - Christ's New Life Solution & Healing Church"
+                message_user = f"""
 Dear {full_name},
 
 Thank you for booking a session with Prophet. Dairo Olayemi Jeremiah at Christ's New Life Solution & Healing Church Worldwide.
 
 We have received your booking request with the following details:
 
-  • Consultation Type : {consultation_type}
-  • Preferred Date    : {preferred_date}
-  • Preferred Time    : {preferred_time}
+  Consultation Type : {consultation_type}
+  Preferred Date    : {preferred_date}
+  Preferred Time    : {preferred_time}
 
 Our team will contact you within 24 hours to confirm your appointment.
 
@@ -67,23 +71,25 @@ Christ's New Life, Fayegbami Street, Surulere Area, Ikirun, Osun State.
 
 God bless you!
 
-— Christ's New Life Solution & Healing Church Worldwide
+- Christ's New Life Solution & Healing Church Worldwide
 """
-            send_mail(
-                subject_user,
-                message_user,
-                settings.EMAIL_HOST_USER,
-                [email],
-                fail_silently=True,
-            )
+                try:
+                    send_mail(
+                        subject_user,
+                        message_user,
+                        settings.EMAIL_HOST_USER,
+                        [email],
+                        fail_silently=True,
+                    )
+                except Exception:
+                    pass
 
-        # --- Admin notification email ---
-        subject_admin = f'New Booking Request from {full_name}'
-        message_admin = f"""
+            # Admin notification email
+            subject_admin = f'New Booking Request from {full_name}'
+            message_admin = f"""
 New session booking received on the church website.
 
 BOOKING DETAILS:
-─────────────────────────────
 Full Name         : {full_name}
 Phone Number      : {phone}
 Email             : {email or 'Not provided'}
@@ -93,18 +99,25 @@ Preferred Time    : {preferred_time}
 
 Message / Description:
 {description or 'No description provided'}
-─────────────────────────────
 
 Log in to the admin panel to confirm or manage this booking:
-http://127.0.0.1:8000/admin/
+https://christnewlife-church-1.onrender.com/admin/
 """
-        send_mail(
-            subject_admin,
-            message_admin,
-            settings.EMAIL_HOST_USER,
-            [settings.ADMIN_EMAIL],
-            fail_silently=True,
-        )
+            try:
+                send_mail(
+                    subject_admin,
+                    message_admin,
+                    settings.EMAIL_HOST_USER,
+                    [settings.ADMIN_EMAIL],
+                    fail_silently=True,
+                )
+            except Exception:
+                pass
+
+        # Start email thread — won't block the response
+        email_thread = threading.Thread(target=send_emails)
+        email_thread.daemon = True
+        email_thread.start()
 
         return render(request, 'main/book_session.html', {'success': True, 'pastor': pastor})
     return render(request, 'main/book_session.html', {'pastor': pastor})
