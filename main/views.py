@@ -1,16 +1,7 @@
 from django.shortcuts import render
 from django.core.mail import send_mail
 from django.conf import settings
-from django.contrib.auth.models import User
-from django.http import HttpResponse
 from .models import Pastor, PastorWife, GalleryImage, Event, Booking
-
-def create_admin(request):
-    if not User.objects.filter(username='admin').exists():
-        User.objects.create_superuser('admin', 'ajiboyeib@gmail.com', 'Church@2026')
-        return HttpResponse('Superuser created! Username: admin, Password: Church@2026')
-    return HttpResponse('Admin already exists.')
-
 
 
 def home(request):
