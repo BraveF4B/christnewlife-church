@@ -25,9 +25,9 @@ INSTALLED_APPS = [
 ]
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dtctm9hyj',
-    'API_KEY': '636267811217849',
-    'API_SECRET': 'XAgSpkH0M0hPhQU4CAAVGCFDafY',
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME', 'dtctm9hyj'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY', '636267811217849'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET', 'XAgSpkH0M0hPhQU4CAAVGCFDafY'),
 }
 
 MIDDLEWARE = [
