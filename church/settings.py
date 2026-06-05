@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import cloudinary
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -17,7 +18,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    ...
+    'cloudinary',
+    'cloudinary_storage',
+    'main',
 ]
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dtctm9hyj',
+    'API_KEY': '636267811217849',
+    'API_SECRET': 'XAgSpkH0M0hPhQU4CAAVGCFDafY',
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -132,3 +143,12 @@ SECRET_KEY = os.environ.get('SECRET_KEY', SECRET_KEY)
 
 # Debug — off in production
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+
+# Cloudinary config
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dtctm9hyj',
+    'API_KEY': '636267811217849',
+    'API_SECRET': 'your-api-secret-here',  # paste your actual API secret
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
