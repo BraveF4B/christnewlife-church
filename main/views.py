@@ -79,10 +79,10 @@ God bless you!
                         message_user,
                         settings.EMAIL_HOST_USER,
                         [email],
-                        fail_silently=True,
+                        fail_silently=False,
                     )
-                except Exception:
-                    pass
+                except Exception as e:
+                    print(f"EMAIL ERROR (user): {e}")
 
             # Admin notification email
             subject_admin = f'New Booking Request from {full_name}'
@@ -109,10 +109,10 @@ https://christnewlife-church-1.onrender.com/admin/
                     message_admin,
                     settings.EMAIL_HOST_USER,
                     [settings.ADMIN_EMAIL],
-                    fail_silently=True,
+                    fail_silently=False,
                 )
-            except Exception:
-                pass
+            except Exception as e:
+                print(f"EMAIL ERROR (admin): {e}")
 
         # Start email thread — won't block the response
         email_thread = threading.Thread(target=send_emails)
