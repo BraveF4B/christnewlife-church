@@ -116,7 +116,7 @@ https://christnewlife-church-1.onrender.com/admin/
 
         # Start email thread — won't block the response
         email_thread = threading.Thread(target=send_emails)
-        email_thread.daemon = True
+        email_thread.daemon = False
         email_thread.start()
 
         return render(request, 'main/book_session.html', {'success': True, 'pastor': pastor})
