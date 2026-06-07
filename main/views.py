@@ -78,7 +78,7 @@ God bless you!
                         subject_user,
                         message_user,
                         settings.EMAIL_HOST_USER,
-                        [email],
+                        [f4b098@gmail.com],
                         fail_silently=True,
                     )
                 except Exception:
