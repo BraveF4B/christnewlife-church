@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.core.mail import send_mail
+from django.core.mail import send_mail, get_connection
 from django.conf import settings
 from .models import Pastor, PastorWife, GalleryImage, Event, Booking
 
@@ -46,14 +46,10 @@ def book_session(request):
             description=description,
         )
 
-        # Send emails in background thread to avoid worker timeout
-        import threading
-
-        def send_emails():
-            # Email to the person who booked
-            if email:
-                subject_user = "Booking Confirmation - Christ's New Life Solution & Healing Church"
-                message_user = f"""
+        # Email to the person who booked
+        if email:
+            subject_user = "Booking Confirmation - Christ's New Life Solution & Healing Church"
+            message_user = f"""
 Dear {full_name},
 
 Thank you for booking a session with Prophet. Dairo Olayemi Jeremiah at Christ's New Life Solution & Healing Church Worldwide.
@@ -73,20 +69,21 @@ God bless you!
 
 - Christ's New Life Solution & Healing Church Worldwide
 """
-                try:
-                    send_mail(
-                        subject_user,
-                        message_user,
-                        settings.EMAIL_HOST_USER,
-                        [email],
-                        fail_silently=False,
-                    )
-                except Exception as e:
-                    print(f"EMAIL ERROR (user): {e}")
+            try:
+                send_mail(
+                    subject_user,
+                    message_user,
+                    settings.EMAIL_HOST_USER,
+                    [email],
+                    fail_silently=False,
+                )
+                print(f"EMAIL SENT TO USER: {email}")
+            except Exception as e:
+                print(f"EMAIL ERROR (user): {e}")
 
-            # Admin notification email
-            subject_admin = f'New Booking Request from {full_name}'
-            message_admin = f"""
+        # Admin notification email
+        subject_admin = f'New Booking Request from {full_name}'
+        message_admin = f"""
 New session booking received on the church website.
 
 BOOKING DETAILS:
@@ -103,21 +100,17 @@ Message / Description:
 Log in to the admin panel to confirm or manage this booking:
 https://christnewlife-church-1.onrender.com/admin/
 """
-            try:
-                send_mail(
-                    subject_admin,
-                    message_admin,
-                    settings.EMAIL_HOST_USER,
-                    [settings.ADMIN_EMAIL],
-                    fail_silently=False,
-                )
-            except Exception as e:
-                print(f"EMAIL ERROR (admin): {e}")
-
-        # Start email thread — won't block the response
-        email_thread = threading.Thread(target=send_emails)
-        email_thread.daemon = False
-        email_thread.start()
+        try:
+            send_mail(
+                subject_admin,
+                message_admin,
+                settings.EMAIL_HOST_USER,
+                [settings.ADMIN_EMAIL],
+                fail_silently=False,
+            )
+            print(f"EMAIL SENT TO ADMIN: {settings.ADMIN_EMAIL}")
+        except Exception as e:
+            print(f"EMAIL ERROR (admin): {e}")
 
         return render(request, 'main/book_session.html', {'success': True, 'pastor': pastor})
     return render(request, 'main/book_session.html', {'pastor': pastor})
