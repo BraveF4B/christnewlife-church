@@ -1,10 +1,12 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 
 class Pastor(models.Model):
     name = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='pastor/', null=True, blank=True)
+    image = CloudinaryField('image', null=True, blank=True)
+    image_word = CloudinaryField('image', null=True, blank=True)
     message = models.TextField()
 
     def __str__(self):
@@ -14,7 +16,7 @@ class Pastor(models.Model):
 class PastorWife(models.Model):
     name = models.CharField(max_length=200)
     title = models.CharField(max_length=200, default="Pastor's Wife & Co-Labourer")
-    image = models.ImageField(upload_to='pastor_wife/', null=True, blank=True)
+    image = CloudinaryField('image', null=True, blank=True)
     bio = models.TextField(blank=True)
 
     class Meta:
@@ -27,7 +29,7 @@ class PastorWife(models.Model):
 
 class GalleryImage(models.Model):
     title = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='gallery/')
+    image = CloudinaryField('image')
     category = models.CharField(max_length=100, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -45,7 +47,7 @@ class Event(models.Model):
     date = models.DateField()
     time = models.TimeField()
     location = models.CharField(max_length=300)
-    image = models.ImageField(upload_to='events/', blank=True, null=True)
+    image = CloudinaryField('image', blank=True, null=True)
     is_active = models.BooleanField(default=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='upcoming')
 

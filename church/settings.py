@@ -16,7 +16,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
     'main',
@@ -87,14 +86,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'main', 'static')]
 
-STORAGES = {
-    "default": {
-        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
-    },
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
 
 # Media files
 MEDIA_URL = '/media/'
@@ -114,11 +105,14 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'f4b098@gmail.com')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'mysyczljfdxoyjzg')
 ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'f4b098@gmail.com')
 
-# Cloudinary
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME', 'dtctm9hyj'),
-    'API_KEY': os.environ.get('CLOUDINARY_API_KEY', '636267811217849'),
-    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET', 'XAgSpkH0M0hPhQU4CAAVGCFDafY'),
-}
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+cloudinary.config(
+    cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME', 'dtctm9hyj'),
+    api_key=os.environ.get('CLOUDINARY_API_KEY', '636267811217849'),
+    api_secret=os.environ.get('CLOUDINARY_API_SECRET', 'XAgSpkH0M0hPhQU4CAAVGCFDafY'),
+)
 
 
