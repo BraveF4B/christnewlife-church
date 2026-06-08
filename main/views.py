@@ -1,7 +1,31 @@
 from django.shortcuts import render
-from django.core.mail import send_mail, get_connection
 from django.conf import settings
 from .models import Pastor, PastorWife, GalleryImage, Event, Booking
+import requests
+import threading
+
+
+def send_brevo_email(to_email, to_name, subject, content):
+    """Send email via Brevo HTTP API — no SMTP ports needed."""
+    url = "https://api.brevo.com/v3/smtp/email"
+    headers = {
+        "accept": "application/json",
+        "content-type": "application/json",
+        "api-key": settings.BREVO_API_KEY,
+    }
+    data = {
+        "sender": {"name": "Christ's New Life Church", "email": "f4b098@gmail.com"},
+        "to": [{"email": to_email, "name": to_name}],
+        "subject": subject,
+        "textContent": content,
+    }
+    try:
+        response = requests.post(url, json=data, headers=headers, timeout=10)
+        print(f"BREVO RESPONSE: {response.status_code} - {response.text}")
+        return response.status_code == 201
+    except Exception as e:
+        print(f"BREVO ERROR: {e}")
+        return False
 
 
 def home(request):
@@ -46,11 +70,11 @@ def book_session(request):
             description=description,
         )
 
-        # Email to the person who booked
-        if email:
-            subject_user = "Booking Confirmation - Christ's New Life Solution & Healing Church"
-            message_user = f"""
-Dear {full_name},
+        # Send emails via Brevo HTTP API in background thread
+        def send_emails():
+            # Confirmation to booker
+            if email:
+                user_content = f"""Dear {full_name},
 
 Thank you for booking a session with Prophet. Dairo Olayemi Jeremiah at Christ's New Life Solution & Healing Church Worldwide.
 
@@ -67,24 +91,15 @@ Christ's New Life, Fayegbami Street, Surulere Area, Ikirun, Osun State.
 
 God bless you!
 
-- Christ's New Life Solution & Healing Church Worldwide
-"""
-            try:
-                send_mail(
-                    subject_user,
-                    message_user,
-                    settings.EMAIL_HOST_USER,
-                    [email],
-                    fail_silently=False,
+- Christ's New Life Solution & Healing Church Worldwide"""
+                send_brevo_email(
+                    email, full_name,
+                    "Booking Confirmation - Christ's New Life Solution & Healing Church",
+                    user_content
                 )
-                print(f"EMAIL SENT TO USER: {email}")
-            except Exception as e:
-                print(f"EMAIL ERROR (user): {e}")
 
-        # Admin notification email
-        subject_admin = f'New Booking Request from {full_name}'
-        message_admin = f"""
-New session booking received on the church website.
+            # Admin notification
+            admin_content = f"""New session booking received on the church website.
 
 BOOKING DETAILS:
 Full Name         : {full_name}
@@ -97,20 +112,17 @@ Preferred Time    : {preferred_time}
 Message / Description:
 {description or 'No description provided'}
 
-Log in to the admin panel to confirm or manage this booking:
-https://christnewlife-church-1.onrender.com/admin/
-"""
-        try:
-            send_mail(
-                subject_admin,
-                message_admin,
-                settings.EMAIL_HOST_USER,
-                [settings.ADMIN_EMAIL],
-                fail_silently=False,
+Log in to the admin panel:
+https://christnewlife-church-1.onrender.com/admin/"""
+            send_brevo_email(
+                settings.ADMIN_EMAIL, "Admin",
+                f"New Booking Request from {full_name}",
+                admin_content
             )
-            print(f"EMAIL SENT TO ADMIN: {settings.ADMIN_EMAIL}")
-        except Exception as e:
-            print(f"EMAIL ERROR (admin): {e}")
+
+        email_thread = threading.Thread(target=send_emails)
+        email_thread.daemon = True
+        email_thread.start()
 
         return render(request, 'main/book_session.html', {'success': True, 'pastor': pastor})
     return render(request, 'main/book_session.html', {'pastor': pastor})
